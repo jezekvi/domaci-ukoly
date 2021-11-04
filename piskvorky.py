@@ -1,27 +1,91 @@
-from turtle import forward, left, right, exitonclick, speed
+from turtle import forward, left, right, exitonclick, speed, penup, pendown, goto, color, pensize
 
-
+ctverec = 50
 while(True):
-    x = (input('Zadej délku strany čtverce:'))
-    if not x.isnumeric():
+    radek = (input('Zadej počet řádků:'))
+    if not radek.isnumeric():
         print("Zkus to znovu a zadej celé kladné číslo")
         continue
-    x = int(x)
-    if(x == 0):
+
+    radek = int(radek)
+    if(radek == 0):
         print("Zkus to znovu a zadej célé kladné číslo")
     else:
         break
+
+while(True):
+    sloupec = (input('Zadej počet sloupců:'))
+    if not sloupec.isnumeric():
+        print("Zkus to znovu a zadej celé kladné číslo")
+        continue
+
+    sloupec = int(sloupec)
+    if(sloupec == 0):
+        print("Zkus to znovu a zadej célé kladné číslo")
+    else:
+        break
+
 speed(0)
-for _ in range(3):
-    for _ in range(3):
+pensize (3)
+for _ in range(radek):
+    for _ in range(sloupec):
         for _ in range(4):
-            forward(x)
+            forward(ctverec)
             left(90)
-        forward(x)
+        forward(ctverec)
     left(180)
-    forward(3*x)
+    forward(sloupec*ctverec)
     right(90)
-    forward(x)
+    forward(ctverec)
     right(90)
+
+
+for _ in range(sloupec*radek):
+    while(True):
+        x = input("Zadej souřadnici x: ")
+        if not x.isnumeric():
+            print("Zkus to znovu a zadej číslo")
+            continue
+
+        x = int(x)
+        if(x <= 0 or x > sloupec):
+            print("Zkus to znovu ")
+        else:    
+            break
+
+    while(True):
+        y = input("Zadej souřadnici y: ")
+        if not y.isnumeric():
+            print("Zkus to znovu")
+            continue
+
+        y = int(y)
+        if(y <= 0 or y > radek):
+            print("Zkus to znovu ")
+        else:    
+            break
+        
+    color('blue')
+    penup()
+    poziceX = (x-1)*ctverec
+    poziceY = (radek+1-y)*ctverec
+    goto(poziceX, poziceY)
+    pendown()
+    goto(poziceX+ctverec, poziceY-ctverec)
+    penup()
+    goto(poziceX+ctverec, poziceY)
+    pendown()
+    goto(poziceX, poziceY-ctverec)
+
+
+
+
+
+
+
+
+
+
+
 
 exitonclick()
