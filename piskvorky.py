@@ -1,5 +1,6 @@
 from turtle import forward, left, right, exitonclick, speed
 
+
 while(True):
     x = (input('Zadej délku strany čtverce:'))
     if not x.isnumeric():
