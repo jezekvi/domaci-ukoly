@@ -1,4 +1,4 @@
-from turtle import forward, left, right, exitonclick, speed, penup, pendown, goto, color, pensize
+from turtle import circle, forward, left, right, exitonclick, speed, penup, pendown, goto, color, pensize
 
 ctverec = 50
 while(True):
@@ -40,7 +40,13 @@ for _ in range(radek):
     right(90)
 
 
+hrac = True
+
 for _ in range(sloupec*radek):
+    if(hrac):
+        print("Hraje hráč X")
+    else:
+        print("Hraje hráč O")
     while(True):
         x = input("Zadej souřadnici x: ")
         if not x.isnumeric():
@@ -50,7 +56,7 @@ for _ in range(sloupec*radek):
         x = int(x)
         if(x <= 0 or x > sloupec):
             print("Zkus to znovu ")
-        else:    
+        else:
             break
 
     while(True):
@@ -62,30 +68,29 @@ for _ in range(sloupec*radek):
         y = int(y)
         if(y <= 0 or y > radek):
             print("Zkus to znovu ")
-        else:    
+        else:
             break
-        
-    color('blue')
-    penup()
+    
     poziceX = (x-1)*ctverec
     poziceY = (radek+1-y)*ctverec
-    goto(poziceX, poziceY)
-    pendown()
-    goto(poziceX+ctverec, poziceY-ctverec)
-    penup()
-    goto(poziceX+ctverec, poziceY)
-    pendown()
-    goto(poziceX, poziceY-ctverec)
+    
+    if hrac: 
+        color('blue')
+        penup()
+        goto(poziceX, poziceY)
+        pendown()
+        goto(poziceX+ctverec, poziceY-ctverec)
+        penup()
+        goto(poziceX+ctverec, poziceY)
+        pendown()
+        goto(poziceX, poziceY-ctverec)
+    else:
+        color('red')
+        penup()
+        goto(poziceX+(ctverec/2), poziceY-ctverec+4)
+        pendown()
+        circle((ctverec/2)-4)
+    hrac = not hrac
 
-
-
-
-
-
-
-
-
-
-
-
+print("Konec hry")
 exitonclick()
