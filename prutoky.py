@@ -1,9 +1,23 @@
 import csv
-from os import read
+from os import read, terminal_size
 
 YEAR_INDEX = 2
 
 def get_rows(ctecka):
+    """
+    čtení po sedmi řádcích
+
+    parametry
+    ---------
+    ctecka : _csv.reader
+        čtečka csv souborů
+
+    return
+    ------
+    list
+        seznam týdenních hodnot
+    """
+   
     bag = []
     for x in range(7):
         try:
@@ -14,6 +28,25 @@ def get_rows(ctecka):
     return bag
 
 def get_rows_year(ctecka_year, previous_day):
+    """
+    čtení pro celý rok
+
+    řádek prvního dne ve čteném roce očekáváme proto, že byl přečtem v předchozím volání funkce 
+    a čtení souboru neumožnuje vrácení o řádek zpeť 
+
+    parametry
+    ---------
+    ctecka_year: _csv.reader
+        čtečka csv souborů
+    previous_day: list | None
+        řádek prvního dne ve čteném roce  
+
+    return
+    ------
+    list
+        seznam ročních hodnot
+    """
+
     bag_year = []
     if previous_day is not None:
         bag_year.append (previous_day)
@@ -32,6 +65,20 @@ def get_rows_year(ctecka_year, previous_day):
     return (bag_year, row_year)
 
 def average(seznam):
+    """
+    výpočet průměrného průtoku
+
+    parametry
+    ---------
+    seznam: list
+        seznam hodnot pro výpočet průměru
+
+    return
+    ------
+    float
+        průměr
+    """
+    
     sum = 0
     for x in seznam:
         sum = sum + float(x[-1])
@@ -47,10 +94,11 @@ with open('vstup.csv', 'r')  as inputfile, open('vystup_7dni.csv', 'w', newline 
         if len(rows) == 0:
             break
         result = average(rows)
-        a = rows[0][0:5] 
-        a.append(round(result,4))
+        #vybíráme vše kromě průtoku z prvního řádku
+        final_result = rows[0][0:5] 
+        final_result.append(round(result,4))
     
-        writer.writerow(a)
+        writer.writerow(final_result)
 
 with open('vstup.csv', 'r')  as inputfile, open('vystup_rok.csv', 'w', newline ='')  as outputfile_year:
     reader = csv.reader(inputfile)
@@ -61,7 +109,8 @@ with open('vstup.csv', 'r')  as inputfile, open('vystup_rok.csv', 'w', newline =
         if len(rows_year) == 0:
             break
         result_year = average(rows_year)
-        b = rows_year[0][0:5]
-        b.append(round(result_year,4))
+        #vybíráme vše kromě průtoku z prvního řádku
+        final_result = rows_year[0][0:5]
+        final_result.append(round(result_year,4))
 
-        writer.writerow(b)
+        writer.writerow(final_result)
