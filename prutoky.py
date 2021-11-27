@@ -1,5 +1,4 @@
 import csv
-from os import read, terminal_size
 
 YEAR_INDEX = 2
 
@@ -78,7 +77,7 @@ def average(seznam):
     float
         průměr
     """
-    
+
     sum = 0
     for x in seznam:
         sum = sum + float(x[-1])
