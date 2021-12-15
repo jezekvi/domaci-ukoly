@@ -24,6 +24,17 @@ def vzdalenost (souradnice_1, souradnice_2):
     delta_x = souradnice_1[1] - souradnice_2[1]
     return sqrt( (delta_y * delta_y) + (delta_x * delta_x) )
 
+def nejblizsi_kontejner (verejne_kontejnery, adresa):
+    aktualni_min = 100000000
+    souradnice_adresy = nacteni_souradnic(adresa)
+    for kontejner in verejne_kontejnery:
+        souradnice_kontejneru = nacteni_souradnic(kontejner)
+        vzdalenost_adresy_od_kontejneru = vzdalenost(souradnice_adresy, souradnice_kontejneru)
+        
+        if vzdalenost_adresy_od_kontejneru < aktualni_min:
+            aktualni_min = vzdalenost_adresy_od_kontejneru
+    return aktualni_min
+
 
 with open('adresy.geojson', 'r', encoding='utf-8')  as input_adresy, open('kontejnery.geojson', 'r', encoding='utf-8')  as input_kontejnery:
     adresy = json.load(input_adresy)
@@ -32,12 +43,18 @@ with open('adresy.geojson', 'r', encoding='utf-8')  as input_adresy, open('konte
 verejne_kontejnery = list(filter(je_kont_verejny, kontejnery['features']))
 adresy_sjtsk = list(map(transformace_do_sjtsk, adresy['features']))
 
+seznam_vzdalenosti = []
+for adresa in adresy_sjtsk:
+    minimum = nejblizsi_kontejner(verejne_kontejnery, adresa)
+    seznam_vzdalenosti.append(minimum)
 
-souradnice_adresy = nacteni_souradnic(adresy_sjtsk[0])
-souradnice_kontejnery = nacteni_souradnic(verejne_kontejnery[0])
+pocet = len(seznam_vzdalenosti)
+suma = sum(seznam_vzdalenosti)
+vysledek = suma/pocet
+print(vysledek)
 
-print(vzdalenost(souradnice_adresy, souradnice_kontejnery))
 
+(nejblizsi_kontejner(verejne_kontejnery, adresy_sjtsk[0]))  
 
 """
 print("Nacteno",len(adresy["features"]),"adresnich bodu")
