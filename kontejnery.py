@@ -43,20 +43,22 @@ with open('adresy.geojson', 'r', encoding='utf-8')  as input_adresy, open('konte
 verejne_kontejnery = list(filter(je_kont_verejny, kontejnery['features']))
 adresy_sjtsk = list(map(transformace_do_sjtsk, adresy['features']))
 
+aktualni_max = [0, None]
 seznam_vzdalenosti = []
 for adresa in adresy_sjtsk:
-    minimum = nejblizsi_kontejner(verejne_kontejnery, adresa)
-    seznam_vzdalenosti.append(minimum)
+    vzdalenost_kontejneru_od_adresy = nejblizsi_kontejner(verejne_kontejnery, adresa)
+    seznam_vzdalenosti.append(vzdalenost_kontejneru_od_adresy)
+    
+    if vzdalenost_kontejneru_od_adresy > aktualni_max[0]:
+            aktualni_max = [vzdalenost_kontejneru_od_adresy, adresa]
 
 pocet = len(seznam_vzdalenosti)
 suma = sum(seznam_vzdalenosti)
 vysledek = suma/pocet
-print(vysledek)
 
+print(aktualni_max)
 
-(nejblizsi_kontejner(verejne_kontejnery, adresy_sjtsk[0]))  
-
-"""
 print("Nacteno",len(adresy["features"]),"adresnich bodu")
 print("Nacteno",len(kontejnery["features"]),"kontejneru na trideny odpad")
-"""
+print("Prumerna vzdalenost ke kontejneru je", round(vysledek), "m.")
+print(f"Nejdale ke kontejneru je z adresy {aktualni_max[1]['properties']['addr:street']} {aktualni_max[1]['properties']['addr:streetnumber']} a to je {round(aktualni_max[0])} m.")
