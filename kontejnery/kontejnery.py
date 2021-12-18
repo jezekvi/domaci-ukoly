@@ -1,4 +1,3 @@
-from functools import reduce
 import json
 from pyproj import Transformer
 from math import sqrt
