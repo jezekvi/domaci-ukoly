@@ -8,7 +8,7 @@ Vstupem do programu jsou dva soubory, a to `adresy.geojson` a `kontejnery.geojso
 ```
 Vstupni soubor je nekorektni
 ```
-V této verzi programu není uvažováno nad možností, že vstupní data jsou validní JSON, ale nekorektní GeoJSON. V tomto případě program spadne.
+Pokud je soubor validní JSON, ale nevalidní GeoJSON, nebo chybí nějaký atribut, tak v této verzi program spadne.
 
 ## Průběh algoritmu
 Po načtení vstupních souborů program nejříve vybere pouze veřejně přístupné kontejnery. Následně pomocí transformační rovnice převede polohové souřadnice adres ze souřadnicového systému WGS-84 do S-JTSK. Díky tomu sjednotí souřadnicové systémy obou vstupních souborů. Následně program vypočítá vzdálenosti všech adres ke všem veřejně dostupným kontejnerům. Nejkratší vzdálenosti ze všech adres následně využije k výpočtu průměrné vzdálenosti. Ze seznamu nejkratších vzdáleností vypočítá také medián a vybere největší hodnotu pro zjištění nejvzdálenější adresy od kontejneru.  
