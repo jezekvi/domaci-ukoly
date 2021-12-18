@@ -4,7 +4,7 @@
 Program funguje na pricipu počítání přímých vzdáleností mezi adresami a kontejnery na tříděný odpad. Skript není interaktivní a nevyžaduje žádný zásah od uživatele. 
 
 ## Vstupní data
-Vstupem do programu jsou dva soubory, a to:`adresy.geojson` a `kontejnery.geojson`. V případě, že program nenalezne vstupní soubory nebo budou soubory nekorektní, program skončí chybou:
+Vstupem do programu jsou dva soubory, a to `adresy.geojson` a `kontejnery.geojson`. V případě, že program nenalezne vstupní soubory nebo budou soubory nekorektní, program skončí chybou:
 ```
 Vstupni soubor je nekorektni
 ```
@@ -20,7 +20,7 @@ Nacteno 708 adresnich bodu
 Nacteno 5813 kontejneru na trideny odpad
 Prumerna vzdalenost ke kontejneru je 82 m.
 Median vzdalenosti ke kontejnerum je 72 m.
-Nejdale ke kontejneru je z adresy Zelenkova 3c a to je 361 m.
+Nejdale ke kontejneru je z adresy Zelenkova 3c a to 361 m.
 ```
 Kromě základních informací o počtu načtených bodů poskytne uživateli informace o průměrné vzdálenosti ke kontejnerům (Průměr vzdáleností od adresy k nejméně vzdálenému kontejneru). Dále vypíše medián vzdáleností a také adresu se vzdáleností, ke které je to k nejbližšímu kontejneru nejdále. 
 
