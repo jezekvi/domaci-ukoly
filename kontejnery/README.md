@@ -24,7 +24,7 @@ Nejdale ke kontejneru je z adresy Zelenkova 3c a to 361 m.
 ```
 Kromě základních informací o počtu načtených bodů poskytne uživateli informace o průměrné vzdálenosti ke kontejnerům. Dále vypíše medián vzdáleností a také adresu od které je to k nejbližšímu kontejneru nejdále. 
 
-Pokud alespoň pro jednu adresu platí, že nejbližší kontejner je vzdálený více než 10000 metrů, program skončí chybovou hláškou:
+Pokud alespoň pro jednu adresu platí, že nejbližší kontejner je vzdálený více než 10000 metrů, tak program skončí chybovou hláškou:
 ```
 Chyba, nejkratsi vzdalenost kontejneru od nektere z adres je vetsi nez 10000 m.
 ```
