@@ -123,7 +123,7 @@ for adresa in adresy_sjtsk:
     seznam_vzdalenosti.append(vzdalenost_kontejneru_od_adresy)
     
     if vzdalenost_kontejneru_od_adresy > 10000:
-        print("Chyba, nejblizsi kontejner od nektere z adres je vetsi nez 10000 m.")
+        print("Chyba, nejkratsi vzdalenost kontejneru od nektere z adres je vetsi nez 10000 m.")
         exit()
         
     if vzdalenost_kontejneru_od_adresy > aktualni_max[0]:

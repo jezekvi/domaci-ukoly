@@ -26,5 +26,5 @@ Kromě základních informací o počtu načtených bodů poskytne uživateli in
 
 Pokud alespoň pro jednu adresu platí, že nejbližší kontejner je vzdálený více než 10000 metrů, program skončí chybovou hláškou:
 ```
-Chyba, nejblizsi kontejner od nektere z adres je vetsi nez 10000 m.
+Chyba, nejkratsi vzdalenost kontejneru od nektere z adres je vetsi nez 10000 m.
 ```
